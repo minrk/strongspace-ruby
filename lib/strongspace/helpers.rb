@@ -167,7 +167,6 @@ module Strongspace
     def space_exist?(name)
       strongspace.spaces["spaces"].each do |space|
         # TODO: clean up the json returned by the strongspace API requests to simplify this iteration
-        space = space["space"]
         return true if space["name"] == name
       end
       return false
@@ -182,7 +181,6 @@ module Strongspace
     def backup_space?(name)
       space = nil
       strongspace.spaces["spaces"].each do |s|
-        s = s["space"]
         if s["name"] == name then
           space = s
           break
