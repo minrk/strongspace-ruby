@@ -45,7 +45,13 @@ module Strongspace
       n = File.read(credentials_file).split("\n")[2]
 
       if n.blank?
-        @computername ||= `system_profiler  SPSoftwareDataType | grep "Computer Name"`.split(":").last.nice_slug
+        if running_on_a_mac?
+          @computername ||= `system_profiler  SPSoftwareDataType | grep "Computer Name"`.split(":").last.nice_slug
+        elsif running_on_windows?
+          # TBD
+        else # assume Linux
+          @computername ||= `hostname`.split('.').first.nice_slug
+        end
 
 
         if @computername.length < 3

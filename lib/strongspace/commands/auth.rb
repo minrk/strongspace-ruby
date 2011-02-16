@@ -133,7 +133,7 @@ module Strongspace::Command
 
     def save_credentials
 
-      if args[0] and args[1]
+      if args and args[0] and args[1]
         @credentials = []
         @credentials[0] = args[0]
         @credentials[1] = args[1]
